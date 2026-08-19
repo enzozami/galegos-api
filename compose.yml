@@ -1,0 +1,79 @@
+networks:
+  galegos:
+    name: galegos
+    driver: bridge
+
+volumes:
+  db-data:
+  redis-data:
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: galegos_php
+    volumes:
+      - ./:/var/www/html
+      - ./docker/php/development.ini:/usr/local/etc/php/conf.d/development.ini:ro
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
+    depends_on:
+      - database
+    networks:
+      - galegos
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: galegos_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - galegos
+    depends_on:
+      - php
+
+  database:
+    image: postgres:18
+    container_name: galegos_postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql
+    environment:
+      - POSTGRES_DB=galegos
+      - POSTGRES_USER=galegos
+      - POSTGRES_PASSWORD=root
+    networks:
+      - galegos
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "galegos", "-d", "galegos" ]
+      interval: 10s
+      timeout: 30s
+      retries: 3
+      start_period: 10s
+
+  redis:
+    image: redis:8-alpine
+    container_name: galegos_redis
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis-data:/data
+    networks:
+      - galegos
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: galegos_worker
+    command: php artisan queue:work redis --sleep=3 --tries=3 --timeout=90
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - database
+      - redis
+    networks:
+      - galegos
