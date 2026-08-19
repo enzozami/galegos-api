@@ -17,6 +17,8 @@ services:
       - ./:/var/www/html
       - ./docker/php/development.ini:/usr/local/etc/php/conf.d/development.ini:ro
       - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
+    env_file:
+      - .env
     depends_on:
       - database
     networks:
@@ -41,7 +43,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - db-data:/var/lib/postgresql
+      - db-data:/var/lib/postgresql-data
     environment:
       - POSTGRES_DB=galegos
       - POSTGRES_USER=galegos
@@ -72,6 +74,8 @@ services:
     command: php artisan queue:work redis --sleep=3 --tries=3 --timeout=90
     volumes:
       - ./:/var/www/html
+    env_file:
+      - .env
     depends_on:
       - database
       - redis
