@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('sub_category_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->integer('max_side_dishes');
+            $table->string('slug')->unique();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('payment_methods');
     }
 };
