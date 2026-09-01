@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('type', ['admin', 'customer'])->default('customer');
             $table->date('birth_date')->nullable();
-            $table->string('phone_number')->nullable();
+            $table->string('phone_number', 15)->nullable();
             $table->string('cpf')->unique()->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamp('last_order')->nullable();
