@@ -1,6 +1,6 @@
 <?php
 
-namespace Gal\Models;
+namespace Gal\Models\User;
 
 use Database\Factories\UserFactory;
 use Gal\Base\Traits\HasUuidRouteKey;
