@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Gal\Models\User\User;
 
 return [
 
