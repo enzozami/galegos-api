@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use Gal\Models\Auth\Actions\ForgotPasswordAction;
 use Gal\Models\Auth\Actions\LoginAction;
 use Gal\Models\Auth\Actions\LogoutAction;
+use Gal\Models\Auth\Actions\RegisterAction;
 use Gal\Models\Auth\Actions\ResetPasswordAction;
 use Gal\Models\Auth\Actions\VerifyCodeAction;
 use Gal\Models\Auth\DTOs\LoginDto;
+use Gal\Models\Auth\DTOs\RegisterDto;
 use Gal\Models\Auth\Requests\ForgotPasswordRequest;
 use Gal\Models\Auth\Requests\LoginRequest;
+use Gal\Models\Auth\Requests\RegisterRequest;
 use Gal\Models\Auth\Requests\VerifyCodeRequest;
 use Gal\Models\Auth\Requests\ResetPasswordRequest;
 use Gal\Models\User\Resource\UserResource;
@@ -23,6 +26,13 @@ class AuthController extends Controller
     public function login(LoginRequest $request, LoginAction $action): UserResource
     {
         $user = $action->handle(LoginDto::fromRequest($request), $request);
+
+        return new UserResource($user);
+    }
+
+    public function register(RegisterRequest $request, RegisterAction $action): UserResource
+    {
+        $user = $action->handle(RegisterDto::fromRequest($request));
 
         return new UserResource($user);
     }
