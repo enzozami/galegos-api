@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('code');
-            $table->string('reset_token');
+            $table->string('reset_token')->nullable();
             $table->unsignedTinyInteger('attempts')->default(0);
             $table->timestamp('verified_at')->nullable();
             $table->timestamp('expires_at');
