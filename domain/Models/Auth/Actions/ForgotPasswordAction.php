@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Mail;
 
 final class ForgotPasswordAction
 {
-    private const int EXPIRES_IN_MINUTES = 15;
-
     public function handle(string $email): void
     {
         $user = User::query()->where('email', $email)->first();
@@ -26,9 +24,9 @@ final class ForgotPasswordAction
             'email' => $email,
             'code' => Hash::make($code),
             'attempts' => 0,
-            'expires_at' => now()->addMinutes(self::EXPIRES_IN_MINUTES),
+            'expires_at' => now()->addMinutes(config('forgot.expires_in_minutes')),
         ]);
 
-        Mail::to($email)->send(new SendMail($code, self::EXPIRES_IN_MINUTES));
+        Mail::to($email)->send(new SendMail($code, config('forgot.expires_in_minutes')));
     }
 }
