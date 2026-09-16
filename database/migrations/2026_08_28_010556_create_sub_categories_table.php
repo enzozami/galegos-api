@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->uuid('uuid')->unique();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
