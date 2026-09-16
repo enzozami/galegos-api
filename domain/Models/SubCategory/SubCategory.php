@@ -3,6 +3,7 @@
 namespace Gal\Models\SubCategory;
 
 use Gal\Base\Traits\HasUuidRouteKey;
+use Gal\Models\Category\Category;
 use Gal\Models\Product\Product;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
