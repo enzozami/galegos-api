@@ -31,12 +31,12 @@ class Category extends Model
         ];
     }
 
-    protected function products(): HasMany
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'category_id');
     }
 
-    protected function subCategories(): HasMany
+    public function subCategories(): HasMany
     {
         return $this->hasMany(SubCategory::class, 'category_id');
     }

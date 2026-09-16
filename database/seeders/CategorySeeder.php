@@ -19,6 +19,8 @@ class CategorySeeder extends Seeder
             ['name' => 'Saladas'],
         ];
 
+        Category::truncate();
+
         foreach ($categories as $category) {
             Category::create($category);
         }
