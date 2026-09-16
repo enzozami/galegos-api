@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Gal\Models\Category\Category;
+use Gal\Models\SubCategory\SubCategory;
 use Illuminate\Database\Seeder;
 
 class SubCategorySeeder extends Seeder
@@ -18,7 +19,11 @@ class SubCategorySeeder extends Seeder
             ['name' => 'Mini', 'category_id' => $marmita->id],
             ['name' => 'Média', 'category_id' => $marmita->id]
         ];
+
+        SubCategory::truncate(); // Limpa a tabela antes de inserir os novos registros
+
+        foreach ($subCategories as $subCategory) {
+            SubCategory::create($subCategory);
+        }
     }
 }
-
-

@@ -34,12 +34,12 @@ class SubCategory extends Model
         ];
     }
 
-    protected function products(): HasMany
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'sub_category_id');
     }
 
-    protected function category(): BelongsTo
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
