@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Gal\Models\Product\Actions\CreateProductAction;
 use Gal\Models\Product\Actions\ListProductsAction;
 use Gal\Models\Product\DTOs\ProductDto;
+use Gal\Models\Product\Product;
 use Gal\Models\Product\Requests\StoreProductRequest;
 use Gal\Models\Product\Requests\UpdateProductRequest;
 use Gal\Models\Product\Resources\ProductResource;
@@ -34,9 +35,9 @@ class ProductController extends Controller
         return new ProductResource($product);
     }
 
-    public function show(string $id)
+    public function show(Product $product): ProductResource
     {
-        //
+        return new ProductResource($product);
     }
 
     public function update(UpdateProductRequest $request, string $id)
