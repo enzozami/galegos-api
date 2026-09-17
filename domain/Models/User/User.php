@@ -5,6 +5,7 @@ namespace Gal\Models\User;
 use Database\Factories\UserFactory;
 use Gal\Base\Traits\HasUuidRouteKey;
 use Gal\Models\Product\Product;
+use Gal\Models\User\Enums\UserEnum;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -36,7 +37,18 @@ class User extends Authenticatable
             'phone_number' => 'string',
             'cpf' => 'string',
             'last_order' => 'datetime',
+            'type' => UserEnum::class,
         ];
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->type === UserEnum::ADMIN;
+    }
+
+    public function isCustomer(): bool
+    {
+        return $this->type === UserEnum::CUSTOMER;
     }
 
     public function products(): HasMany
