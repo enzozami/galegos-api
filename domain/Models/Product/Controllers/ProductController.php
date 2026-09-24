@@ -4,6 +4,7 @@ namespace Gal\Models\Product\Controllers;
 
 use App\Http\Controllers\Controller;
 use Gal\Models\Product\Actions\CreateProductAction;
+use Gal\Models\Product\Actions\DestroyProductAction;
 use Gal\Models\Product\Actions\ListProductsAction;
 use Gal\Models\Product\DTOs\ProductDto;
 use Gal\Models\Product\Product;
@@ -12,6 +13,7 @@ use Gal\Models\Product\Requests\UpdateProductRequest;
 use Gal\Models\Product\Resources\ProductResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
@@ -45,8 +47,15 @@ class ProductController extends Controller
         //
     }
 
-    public function destroy(string $id)
+    public function destroy(Product $product, DestroyProductAction $action): Response
     {
-        //
+        $user = auth()->user();
+
+        $action->handle(
+            user: $user,
+            product: $product,
+        );
+
+        return response()->noContent();
     }
 }
