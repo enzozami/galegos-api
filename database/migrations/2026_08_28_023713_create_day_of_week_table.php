@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('days_of_week', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('value');
+            $table->string('name', 20);
         });
     }
 

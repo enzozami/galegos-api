@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->foreignId('sub_category_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->integer('max_side_dishes');
             $table->enum('status', ['active', 'inactive'])->default('active');
