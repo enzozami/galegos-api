@@ -19,7 +19,9 @@ RUN set -eux; \
     apt-mark manual $savedAptMark; \
     find /usr/local -type f -executable -exec ldd '{}' ';' 2>/dev/null \
     | awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); printf "*%s\n", so }' \
-    | sort -u | xargs -r dpkg-query --search | cut -d: -f1 | sort -u | xargs -r apt-mark manual; \
+    | sort -u | xargs -r dpkg-query --search \
+    | awk 'sub(":$", "", $1) { print $1 }' \
+    | sort -u | xargs -r apt-mark manual; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
     rm -rf /var/lib/apt/lists/* /tmp/pear
 
