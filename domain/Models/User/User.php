@@ -4,6 +4,7 @@ namespace Gal\Models\User;
 
 use Database\Factories\UserFactory;
 use Gal\Base\Traits\HasUuidRouteKey;
+use Gal\Models\Orders\Order;
 use Gal\Models\Product\Product;
 use Gal\Models\User\Enums\UserEnum;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -54,5 +55,10 @@ class User extends Authenticatable
     public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'created_by');
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
     }
 }
