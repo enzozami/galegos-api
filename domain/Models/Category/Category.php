@@ -3,6 +3,7 @@
 namespace Gal\Models\Category;
 
 use Gal\Base\Traits\HasUuidRouteKey;
+use Gal\Models\Category\Enums\CategoryStatusEnum;
 use Gal\Models\Product\Product;
 use Gal\Models\SubCategory\SubCategory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -17,6 +18,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     protected $table = 'categories';
+    
+    protected $attributes = [
+        'status' => CategoryStatusEnum::ACTIVE->value,
+    ];
 
     /** @use HasFactory<CategoryFactory> */
     use HasFactory, HasUuids, HasUuidRouteKey {
@@ -27,8 +32,13 @@ class Category extends Model
     {
         return [
             'name' => 'string',
-            'status' => 'enum:active,inactive',
+            'status' => CategoryStatusEnum::class,
         ];
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === CategoryStatusEnum::ACTIVE;
     }
 
     public function products(): HasMany
