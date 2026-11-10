@@ -13,6 +13,7 @@ class CategoryResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'name' => $this->name,
+            'status' => $this->when($request->user()?->isAdmin(), $this->status),
         ];
     }
 }
