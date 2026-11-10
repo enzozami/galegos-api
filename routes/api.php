@@ -1,6 +1,7 @@
 <?php
 
 use Gal\Models\Auth\Controllers\AuthController;
+use Gal\Models\Category\Controllers\CategoryController;
 use Gal\Models\Product\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ Route::prefix('auth')->name('auth.')->middleware(['web', 'auth:sanctum'])->group
 
 Route::middleware(['web', 'auth:sanctum'])->group(function () {
     Route::apiResource('products', ProductController::class);
+    Route::apiResource('categories', CategoryController::class);
 });
