@@ -33,6 +33,11 @@ class Order extends Model
         ];
     }
 
+    public function isNew(): bool
+    {
+        return $this->status === OrderStatusEnum::NEW;
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
