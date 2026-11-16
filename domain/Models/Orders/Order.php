@@ -3,6 +3,7 @@
 namespace Gal\Models\Orders;
 
 use Gal\Base\Traits\HasUuidRouteKey;
+use Gal\Models\OrderItems\OrderItem;
 use Gal\Models\Orders\Enums\OrderStatusEnum;
 use Gal\Models\Orders\Enums\OrderTypeEnum;
 use Gal\Models\User\User;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['address_id', 'payment_method_id', 'delivery_fee', 'total_price', 'change_for', 'type', 'status'])]
 #[Hidden(['id', 'user_id', 'created_at', 'updated_at', 'address_id', 'payment_method_id'])]
@@ -41,5 +43,10 @@ class Order extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }
