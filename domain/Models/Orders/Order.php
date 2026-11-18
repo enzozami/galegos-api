@@ -3,6 +3,7 @@
 namespace Gal\Models\Orders;
 
 use Gal\Base\Traits\HasUuidRouteKey;
+use Gal\Base\Traits\ResolvesIdFromUuid;
 use Gal\Models\OrderItems\OrderItem;
 use Gal\Models\Orders\Enums\OrderStatusEnum;
 use Gal\Models\Orders\Enums\OrderTypeEnum;
@@ -20,7 +21,7 @@ class Order extends Model
 {
     protected $table = 'orders';
 
-    use HasUuids, HasUuidRouteKey {
+    use ResolvesIdFromUuid, HasUuids, HasUuidRouteKey {
         HasUuidRouteKey::uniqueIds insteadof HasUuids;
     }
 
