@@ -2,10 +2,13 @@
 
 namespace Gal\Base\Traits;
 
+/**
+ * @mixin \Illuminate\Database\Eloquent\Model
+ */
 trait ResolvesIdFromUuid
 {
-    public static function idFromUuid(string $uuid): self
+    public static function idFromUuid(string $uuid): int
     {
-        return self::where('uuid', $uuid)->firstOrFail();
+        return static::where('uuid', $uuid)->valueOrFail('id');
     }
 }
