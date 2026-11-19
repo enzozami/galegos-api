@@ -3,12 +3,13 @@
 namespace Gal\Models\OrderItems;
 
 use Gal\Models\Orders\Order;
+use Gal\Models\Product\Product;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['order_id', 'product_id', 'price_variation_id', 'quantity', 'unit_price'])]
+#[Fillable(['product_id', 'price_variation_id', 'quantity', 'unit_price'])]
 #[Hidden(['id', 'created_at', 'updated_at', 'order_id', 'product_id', 'price_variation_id'])]
 class OrderItem extends Model
 {
@@ -16,11 +17,21 @@ class OrderItem extends Model
 
     public function casts(): array
     {
-        return [];
+        return [
+            'order_id' => 'integer',
+            'product_id' => 'integer',
+            'price_variation_id' => 'integer',
+            'quantity' => 'integer',
+        ];
     }
 
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
     }
 }

@@ -3,9 +3,10 @@
 namespace Gal\Models\Product;
 
 use Gal\Base\Traits\HasUuidRouteKey;
+use Gal\Base\Traits\ResolvesIdFromUuid;
 use Gal\Models\Category\Category;
 use Gal\Models\DayOfWeek\DayOfWeek;
-use Gal\Models\OrderItem\OrderItem;
+use Gal\Models\OrderItems\OrderItem;
 use Gal\Models\PriceVariation\PriceVariation;
 use Gal\Models\SideDish\SideDish;
 use Gal\Models\SubCategory\SubCategory;
@@ -26,7 +27,7 @@ class Product extends Model
     protected $table = 'products';
 
     /** @use HasFactory<ProductFactory> */
-    use HasFactory, HasUuids, HasUuidRouteKey {
+    use ResolvesIdFromUuid, HasFactory, HasUuids, HasUuidRouteKey {
         HasUuidRouteKey::uniqueIds insteadof HasUuids;
     }
 
@@ -65,5 +66,10 @@ class Product extends Model
     public function daysOfWeek(): BelongsToMany
     {
         return $this->belongsToMany(DayOfWeek::class, 'product_days_of_week', 'product_id', 'day_of_week_id');
+    }
+
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class, 'product_id');
     }
 }
