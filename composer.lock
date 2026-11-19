@@ -6190,7 +6190,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-09-15T12:58:37+00:00"
+            "time": "2026-09-15T12:58:37+00:00",
+            "published-time": "2026-11-03T09:20:57+00:00"
         },
         {
             "name": "barryvdh/reflection-docblock",
@@ -8687,5 +8688,5 @@
         "php": "^8.3"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.11.0"
 }
