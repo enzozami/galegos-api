@@ -4,6 +4,7 @@ namespace Gal\Models\Orders;
 
 use Gal\Base\Traits\HasUuidRouteKey;
 use Gal\Base\Traits\ResolvesIdFromUuid;
+use Gal\Models\Address\Address;
 use Gal\Models\OrderItems\OrderItem;
 use Gal\Models\Orders\Enums\OrderStatusEnum;
 use Gal\Models\Orders\Enums\OrderTypeEnum;
@@ -49,5 +50,10 @@ class Order extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function address(): BelongsTo
+    {
+        return $this->belongsTo(Address::class);
     }
 }
