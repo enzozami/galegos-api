@@ -8,6 +8,7 @@ use Gal\Models\Address\Address;
 use Gal\Models\OrderItems\OrderItem;
 use Gal\Models\Orders\Enums\OrderStatusEnum;
 use Gal\Models\Orders\Enums\OrderTypeEnum;
+use Gal\Models\PaymentMethod\PaymentMethod;
 use Gal\Models\User\User;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -50,6 +51,11 @@ class Order extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function paymentMethod(): BelongsTo
+    {
+        return $this->belongsTo(PaymentMethod::class);
     }
 
     public function address(): BelongsTo
