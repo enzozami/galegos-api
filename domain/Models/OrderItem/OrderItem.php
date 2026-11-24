@@ -1,15 +1,15 @@
 <?php
 
-namespace Gal\Models\OrderItems;
+namespace Gal\Models\OrderItem;
 
-use Gal\Models\Orders\Order;
+use Gal\Models\Order\Order;
 use Gal\Models\Product\Product;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['product_id', 'price_variation_id', 'quantity', 'unit_price'])]
+#[Fillable(['order_id', 'product_id', 'price_variation_id', 'quantity', 'unit_price', 'product_name', 'size'])]
 #[Hidden(['id', 'created_at', 'updated_at', 'order_id', 'product_id', 'price_variation_id'])]
 class OrderItem extends Model
 {

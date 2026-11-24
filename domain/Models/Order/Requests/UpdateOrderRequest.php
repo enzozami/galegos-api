@@ -1,6 +1,6 @@
 <?php
 
-namespace Gal\Models\Orders\Requests;
+namespace Gal\Models\Order\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

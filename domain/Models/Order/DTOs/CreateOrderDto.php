@@ -1,8 +1,8 @@
 <?php
 
-namespace Gal\Models\Orders\DTOs;
+namespace Gal\Models\Order\DTOs;
 
-use Gal\Models\Orders\Enums\OrderTypeEnum;
+use Gal\Models\Order\Enums\OrderTypeEnum;
 use Illuminate\Http\Request;
 
 final readonly class CreateOrderDto
@@ -15,14 +15,14 @@ final readonly class CreateOrderDto
         public array $products
     ) {}
 
-    public static function fromArray(Request $request): self
+    public static function fromRequest(Request $request): self
     {
         return new self(
             addressId: $request->integer('address_id'),
             paymentMethodId: $request->integer('payment_method_id'),
             changeFor: $request->filled('change_for') ? $request->float('change_for') : null,
             type: OrderTypeEnum::from($request->string('type')->toString()),
-            products: array_map(fn($product) => CreateOrderProductDto::fromRequest($product), $request->input('products', []))
+            products: array_map(),
         );
     }
 }

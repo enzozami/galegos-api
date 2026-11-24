@@ -6,7 +6,7 @@ use Gal\Base\Traits\HasUuidRouteKey;
 use Gal\Base\Traits\ResolvesIdFromUuid;
 use Gal\Models\Category\Category;
 use Gal\Models\DayOfWeek\DayOfWeek;
-use Gal\Models\OrderItems\OrderItem;
+use Gal\Models\OrderItem\OrderItem;
 use Gal\Models\PriceVariation\PriceVariation;
 use Gal\Models\SideDish\SideDish;
 use Gal\Models\SubCategory\SubCategory;

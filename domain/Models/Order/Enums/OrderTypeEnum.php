@@ -1,6 +1,6 @@
 <?php
 
-namespace Gal\Models\Orders\Enums;
+namespace Gal\Models\Order\Enums;
 
 enum OrderTypeEnum: string
 {

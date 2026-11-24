@@ -1,6 +1,6 @@
 <?php
 
-namespace Gal\Models\Orders\Actions;
+namespace Gal\Models\Order\Actions;
 
 final class DestroyOrderAction
 {

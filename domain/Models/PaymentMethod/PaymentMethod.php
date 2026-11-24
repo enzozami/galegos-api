@@ -2,7 +2,7 @@
 
 namespace Gal\Models\PaymentMethod;
 
-use Gal\Models\Orders\Order;
+use Gal\Models\Order\Order;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Model;

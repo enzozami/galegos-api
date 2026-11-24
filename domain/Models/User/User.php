@@ -4,7 +4,7 @@ namespace Gal\Models\User;
 
 use Database\Factories\UserFactory;
 use Gal\Base\Traits\HasUuidRouteKey;
-use Gal\Models\Orders\Order;
+use Gal\Models\Order\Order;
 use Gal\Models\Product\Product;
 use Gal\Models\User\Enums\UserEnum;
 use Illuminate\Database\Eloquent\Attributes\Fillable;

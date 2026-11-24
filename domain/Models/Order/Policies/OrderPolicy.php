@@ -1,8 +1,8 @@
 <?php
 
-namespace Gal\Models\Orders\Policies;
+namespace Gal\Models\Order\Policies;
 
-use Gal\Models\Orders\Order;
+use Gal\Models\Order\Order;
 use Gal\Models\User\User;
 
 class OrderPolicy

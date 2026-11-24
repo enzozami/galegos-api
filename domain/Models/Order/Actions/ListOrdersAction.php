@@ -1,6 +1,6 @@
 <?php
 
-namespace Gal\Models\Orders;
+namespace Gal\Models\Order;
 
 final class ListOrdersAction
 {

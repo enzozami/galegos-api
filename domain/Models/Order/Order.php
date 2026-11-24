@@ -1,13 +1,13 @@
 <?php
 
-namespace Gal\Models\Orders;
+namespace Gal\Models\Order;
 
 use Gal\Base\Traits\HasUuidRouteKey;
 use Gal\Base\Traits\ResolvesIdFromUuid;
 use Gal\Models\Address\Address;
-use Gal\Models\OrderItems\OrderItem;
-use Gal\Models\Orders\Enums\OrderStatusEnum;
-use Gal\Models\Orders\Enums\OrderTypeEnum;
+use Gal\Models\OrderItem\OrderItem;
+use Gal\Models\Order\Enums\OrderStatusEnum;
+use Gal\Models\Order\Enums\OrderTypeEnum;
 use Gal\Models\PaymentMethod\PaymentMethod;
 use Gal\Models\User\User;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
