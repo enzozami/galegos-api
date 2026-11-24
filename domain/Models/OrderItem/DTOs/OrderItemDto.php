@@ -7,17 +7,25 @@ use Illuminate\Http\Request;
 final readonly class OrderItemDto
 {
     public function __construct(
-        public string $productUuid,
+        public int $orderId,
+        public int $productId,
         public int $priceVariationId,
         public int $quantity,
-    )
-    {}
+        public string $productName,
+        public string $size,
+        public float $unitPrice,
+    ) {}
 
-    public static function fromRequest(Request $request): self {
+    public static function fromRequest(Request $request): self
+    {
         return new self(
-            productUuid: (string) $request->string('product_uuid')->toString(),
+            orderId: (int) $request->integer('order_id'),
+            productId: (int) $request->integer('product_id'),
             priceVariationId: (int) $request->integer('price_variation_id'),
             quantity: (int) $request->integer('quantity'),
+            productName: (string) $request->string('product_name'),
+            size: (string) $request->string('size'),
+            unitPrice: (float) $request->float('unit_price'),
         );
     }
 }

@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['order_id', 'product_id', 'price_variation_id', 'quantity', 'unit_price', 'product_name', 'size'])]
-#[Hidden(['id', 'created_at', 'updated_at', 'order_id', 'product_id', 'price_variation_id'])]
+#[Fillable(['product_id', 'price_variation_id', 'quantity', 'unit_price', 'product_name', 'size'])]
+#[Hidden(['id', 'order_id', 'created_at', 'updated_at', 'order_id', 'product_id', 'price_variation_id'])]
 class OrderItem extends Model
 {
     protected $table = 'order_items';

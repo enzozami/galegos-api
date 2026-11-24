@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('address_id')->constrained('addresses');
+            $table->foreignId('address_id')->constrained('addresses')->nullable();
             $table->foreignId('payment_method_id')->constrained('payment_methods');
-            $table->decimal('delivery_fee', 8, 2);
+            $table->decimal('delivery_fee', 8, 2)->nullable();
             $table->decimal('total_price', 8, 2);
             $table->decimal('change_for', 8, 2)->nullable();
             $table->enum('type', ['delivery', 'pickup']);

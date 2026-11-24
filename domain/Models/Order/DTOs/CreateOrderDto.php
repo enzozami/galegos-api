@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 final readonly class CreateOrderDto
 {
     public function __construct(
-        public int $addressId,
+        public ?int $addressId,
         public int $paymentMethodId,
         public ?float $changeFor,
         public OrderTypeEnum $type,
